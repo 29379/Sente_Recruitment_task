@@ -1,0 +1,40 @@
+public static void WriteImageLabelFile(
+    string labelFilePath, 
+    byte[] labelData, 
+    System.Drawing.Imaging.ImageFormat labelImageFormat,
+    int rotation = 0)
+{
+    if (labelFilePath == NULL || labelFilePath is empty){
+        throw an appropriate Exception - incorrect input
+    }
+    if (labelData == NULL || labelData is empty){
+        throw an appropriate Exception - incorrect input
+    }
+    if (labelImageFormat == NULL){
+        throw an appropriate Exception - incorrect input
+    }
+
+    System.Drawing.RotateFlipType rotationType;
+
+    switch(rotation){
+        case 90:
+            rotationType = rotate90
+        case 180:
+            rotationType = rotate180
+        case 270:
+            rotationType = rotate270
+        default:
+            throw an appropriate Exception - incorrect input
+    }
+
+    try{
+        System.Drawing.Image labelImageData = System.Drawing.Image.FromStream(
+            newMemoryStream(labelData)
+        );
+        labelImageData.RotateFlip(rotationType)
+        labelImageData.Save(labelFilePath, labelImageFormat)
+    }
+    catch{
+        Exception a,b,c,....
+    }
+}

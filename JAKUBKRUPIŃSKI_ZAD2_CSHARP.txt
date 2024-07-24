@@ -1,0 +1,45 @@
+// pseudocode for GetAllTasks() method
+public List<TaskItem> GetAllTasks(){
+
+    var tasks = new List<TaskItem>;
+    
+    using (var connection = new SQLiteConnection(ConnectionString)){
+        connection.Open();
+        string selectQuery = "SELECT ......... ";
+
+        using (var command = new SQLiteCommand(selectQuery, connection)){
+
+            Execute Command
+            for each row:
+                var task = new TaskItem(....)
+                tasks.add(task)
+        
+        }
+
+    }
+    return tasks; // if there are no task items - an empty list will be returned
+}
+
+// pseudocode for DeleteTask(int id) method
+public void DeleteTask(int id){
+
+    if id < 0 
+        throw an appropriate Exception - incorrect input
+    using (var connection = new SQLiteConnection(ConnectionString)){
+        connection.Open();
+        string checkIfExistsQuery = "SELECT ..... by id";
+
+        using (var command = new SQLiteCommand(checkIfExistsQuery, connection)){
+            Execute Command
+            if (!exists){
+                throw NotFoundException
+            }
+        }
+
+        string deleteQuery = "DELETE ........... by id";
+        using (var command = new SQLiteCommand(deleteQuery, connection)){
+            Execute Command
+        }
+    }
+
+}
